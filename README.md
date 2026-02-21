@@ -50,51 +50,51 @@ Modifications and additions to the original code are licensed under the MIT Lice
 ### Modes
 
 #### Default 
-[ro.vendor.xrz.default_anti_alias]: [0]
-[ro.vendor.xrz.default_anti_flicker]: [0]
-[ro.vendor.xrz.default_auto_clean]: [1]
-[ro.vendor.xrz.default_brightness_level]: [0]
-[ro.vendor.xrz.default_color_enhance]: [80]
-[ro.vendor.xrz.default_contrast_level]: [0]
-[ro.vendor.xrz.default_refresh_frequency]: [0]
-[ro.vendor.xrz.default_refresh_mode]: [178]
+ro.vendor.xrz.default_anti_alias: 0
+ro.vendor.xrz.default_anti_flicker: 0git 
+ro.vendor.xrz.default_auto_clean: 1
+ro.vendor.xrz.default_brightness_level: 0
+ro.vendor.xrz.default_color_enhance: 80
+ro.vendor.xrz.default_contrast_level: 0
+ro.vendor.xrz.default_refresh_frequency: 0
+ro.vendor.xrz.default_refresh_mode: 178
 
 #### Magazine
-[sys.maga_anti_flicker]: [0]
-[sys.maga_auto_clean]: [0]
-[sys.maga_brightness]: [0]
-[sys.maga_color_enhance]: [80]
-[sys.maga_contrast]: [0]
-[sys.maga_refresh_mode]: [-2147483471]
+sys.maga_anti_flicker: 0
+sys.maga_auto_clean: 0
+sys.maga_brightness: 0
+sys.maga_color_enhance: 80
+sys.maga_contrast: 0
+sys.maga_refresh_mode: -2147483471
 
 #### Comic
-[sys.comic_anti_flicker]: [0]
-[sys.comic_auto_clean]: [0]
-[sys.comic_brightness]: [0]
-[sys.comic_color_enhance]: [90]
-[sys.comic_contrast]: [90]
-[sys.comic_refresh_mode]: [180]`
+sys.comic_anti_flicker: 0
+sys.comic_auto_clean: 0
+sys.comic_brightness: 0
+sys.comic_color_enhance: 90
+sys.comic_contrast: 90
+sys.comic_refresh_mode: 180`
 
 #### Video
-[sys.video_anti_flicker]: [1]
-[sys.video_auto_clean]: [1]
-[sys.video_brightness]: [0]
-[sys.video_color_enhance]: [80]
-[sys.video_contrast]: [0]
-[sys.video_refresh_mode]: [179]
+sys.video_anti_flicker: 1
+sys.video_auto_clean: 1
+sys.video_brightness: 0
+sys.video_color_enhance: 80
+sys.video_contrast: 0
+sys.video_refresh_mode: 179
 
 #### Force Global Refresh Mode
-[vendor.xrz.force_global_refresh_mode]: [-1]
+vendor.xrz.force_global_refresh_mode: -1
 
 #### Refresh Frequency
-[ro.vendor.xrz.default_refresh_frequency]: [0]
+ro.vendor.xrz.default_refresh_frequency: 0
 
 #### Full Refresh Fequency
-[vendor.xrz.clean_frequency]: [0 - 50]
+vendor.xrz.clean_frequency: 0 - 50
 
 #### Lights
-/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_warm_light [0-222]
-/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_cold_light [0-222]
+/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_warm_light 0-222
+/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_cold_light 0-222
 
 Clean
 clean_a2=0
