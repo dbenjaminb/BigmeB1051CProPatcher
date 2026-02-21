@@ -56,7 +56,7 @@ class BrightnessManager(
      */
     fun setupSeekBars(lightSeekbar: SeekBar, lightWarmSeekbar: SeekBar) {
         lightSeekbar.min = 0
-        lightSeekbar.max = 254
+        lightSeekbar.max = 222
         lightSeekbar.progress = coldBrightness
         lightSeekbar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
@@ -75,7 +75,7 @@ class BrightnessManager(
         )
 
         lightWarmSeekbar.min = 0
-        lightWarmSeekbar.max = 254
+        lightWarmSeekbar.max = 222
         lightWarmSeekbar.progress = warmBrightness
         lightWarmSeekbar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {

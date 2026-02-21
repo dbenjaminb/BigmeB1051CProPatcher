@@ -67,26 +67,26 @@ void generate_json_string(char* json_str, const char* theme_style, const char* h
 }
 
 void execute_settings_command(const char* json_str) {
-    pid_t pid = fork();
-    if (pid == 0) {
-        execl("/system/bin/settings", "settings", "put", "secure", "theme_customization_overlay_packages", json_str, (char *)NULL);
-        LOGE("execlp failed: %s", strerror(errno));
-        exit(EXIT_FAILURE);
-    } else if (pid < 0) {
-        LOGE("fork failed: %s", strerror(errno));
-    } else {
-        wait(NULL);
-    }
+    // pid_t pid = fork();
+    // if (pid == 0) {
+    //     execl("/system/bin/settings", "settings", "put", "secure", "theme_customization_overlay_packages", json_str, (char *)NULL);
+    //     LOGE("execlp failed: %s", strerror(errno));
+    //     exit(EXIT_FAILURE);
+    // } else if (pid < 0) {
+    //     LOGE("fork failed: %s", strerror(errno));
+    // } else {
+    //     wait(NULL);
+    // }
 }
 
 void applyThemeCustomization(int theme_style_index, const char* hex_color) {
-    char sanitized_theme_style[20];
-    char sanitized_hex_color[7];
-    char json_str[BUFFER_SIZE];
+    // char sanitized_theme_style[20];
+    // char sanitized_hex_color[7];
+    // char json_str[BUFFER_SIZE];
 
-    sanitize_input(theme_style_index, hex_color, sanitized_theme_style, sanitized_hex_color);
-    generate_json_string(json_str, sanitized_theme_style, sanitized_hex_color);
-    execute_settings_command(json_str);
+    // sanitize_input(theme_style_index, hex_color, sanitized_theme_style, sanitized_hex_color);
+    // generate_json_string(json_str, sanitized_theme_style, sanitized_hex_color);
+    // execute_settings_command(json_str);
 }
 
 
@@ -95,16 +95,16 @@ void epdForceClear() {
 
 
 void epdCommitBitmap() {
-    const char* filePath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_commit_bitmap";
-    int fd = open(filePath, O_WRONLY);
-    if (fd == -1) {
-        LOGE("Error writing to %s: %s\n", filePath, strerror(errno));
-        return;
-    }
-    if (write(fd, "1", 1) == -1) {
-        LOGE("Error writing to %s: %s\n", filePath, strerror(errno));
-    }
-    close(fd);
+    // const char* filePath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_commit_bitmap";
+    // int fd = open(filePath, O_WRONLY);
+    // if (fd == -1) {
+    //     LOGE("Error writing to %s: %s\n", filePath, strerror(errno));
+    //     return;
+    // }
+    // if (write(fd, "1", 1) == -1) {
+    //     LOGE("Error writing to %s: %s\n", filePath, strerror(errno));
+    // }
+    // close(fd);
 }
 
 void writeToEpdDisplayMode(const char* value) {
@@ -126,7 +126,7 @@ void writeToEpdDisplayMode(const char* value) {
 }
 
 void setColdBacklight(const char* brightness) {
-    const char* coldBacklightPath = "/sys/devices/platform/11d01000.i2c7/i2c-7/7-0036/lm3630a_cold_light";
+    const char* coldBacklightPath = "/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_cold_light";
     if(!valid_number(brightness)){
         LOGE("Error writing to %s: Invalid Brightness Value\n", coldBacklightPath);
         return;
@@ -143,7 +143,7 @@ void setColdBacklight(const char* brightness) {
 }
 
 void setWarmBacklight(const char* brightness) {
-    const char* warmBacklightPath = "/sys/devices/platform/11d01000.i2c7/i2c-7/7-0036/lm3630a_warm_light";
+    const char* warmBacklightPath = "/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_warm_light";
     if(!valid_number(brightness)){
         LOGE("Error writing to %s: Invalid Brightness Value\n", warmBacklightPath);
         return;
@@ -195,71 +195,71 @@ void setAntiFlicker(const char* value) {
 
 
 void setWhiteThreshold(const char* brightness) {
-    const char* whiteThresholdPath ="/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_white_threshold";
-    if(!valid_number(brightness)){
-        LOGE("Error writing to %s: Invalid Number\n", whiteThresholdPath);
-        return;
-    }
-    int fd = open(whiteThresholdPath, O_WRONLY);
-    if (fd == -1) {
-        LOGE("Error writing to %s: %s\n", whiteThresholdPath, strerror(errno));
-        return;
-    }
-    if (write(fd, brightness, strlen(brightness)) == -1) {
-        LOGE("Error writing to %s: %s\n", whiteThresholdPath, strerror(errno));
-    }
-    close(fd);
+    // const char* whiteThresholdPath ="/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_white_threshold";
+    // if(!valid_number(brightness)){
+    //     LOGE("Error writing to %s: Invalid Number\n", whiteThresholdPath);
+    //     return;
+    // }
+    // int fd = open(whiteThresholdPath, O_WRONLY);
+    // if (fd == -1) {
+    //     LOGE("Error writing to %s: %s\n", whiteThresholdPath, strerror(errno));
+    //     return;
+    // }
+    // if (write(fd, brightness, strlen(brightness)) == -1) {
+    //     LOGE("Error writing to %s: %s\n", whiteThresholdPath, strerror(errno));
+    // }
+    // close(fd);
 }
 
 void setBlackThreshold(const char* brightness) {
-    const char* blackThresholdPath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_black_threshold";
-    if(!valid_number(brightness)){
-        LOGE("Error writing to %s: Invalid Number\n", blackThresholdPath);
-        return;
-    }
-    int fd = open(blackThresholdPath, O_WRONLY);
-    if (fd == -1) {
-        LOGE("Error writing to %s: %s\n", blackThresholdPath, strerror(errno));
-        return;
-    }
-    if (write(fd, brightness, strlen(brightness)) == -1) {
-        LOGE("Error writing to %s: %s\n", blackThresholdPath, strerror(errno));
-    }
-    close(fd);
+    // const char* blackThresholdPath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_black_threshold";
+    // if(!valid_number(brightness)){
+    //     LOGE("Error writing to %s: Invalid Number\n", blackThresholdPath);
+    //     return;
+    // }
+    // int fd = open(blackThresholdPath, O_WRONLY);
+    // if (fd == -1) {
+    //     LOGE("Error writing to %s: %s\n", blackThresholdPath, strerror(errno));
+    //     return;
+    // }
+    // if (write(fd, brightness, strlen(brightness)) == -1) {
+    //     LOGE("Error writing to %s: %s\n", blackThresholdPath, strerror(errno));
+    // }
+    // close(fd);
 }
 
 void setContrast(const char* brightness) {
-    const char* contrastPath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_contrast";
-    if(!valid_number(brightness)){
-        LOGE("Error writing to %s: Invalid Number\n", contrastPath);
-        return;
-    }
-    int fd = open(contrastPath, O_WRONLY);
-    if (fd == -1) {
-        LOGE("Error writing to %s: %s\n", contrastPath, strerror(errno));
-        return;
-    }
-    if (write(fd, brightness, strlen(brightness)) == -1) {
-        LOGE("Error writing to %s: %s\n", contrastPath, strerror(errno));
-    }
-    close(fd);
+    // const char* contrastPath = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/epd_contrast";
+    // if(!valid_number(brightness)){
+    //     LOGE("Error writing to %s: Invalid Number\n", contrastPath);
+    //     return;
+    // }
+    // int fd = open(contrastPath, O_WRONLY);
+    // if (fd == -1) {
+    //     LOGE("Error writing to %s: %s\n", contrastPath, strerror(errno));
+    //     return;
+    // }
+    // if (write(fd, brightness, strlen(brightness)) == -1) {
+    //     LOGE("Error writing to %s: %s\n", contrastPath, strerror(errno));
+    // }
+    // close(fd);
 }
 
 void writeLockscreenProp(const char* value) {
-    if(!valid_number(value)){
-        LOGE("Error setting static lockscreen: Invalid Number\n");
-        return;
-    }
-    pid_t pid = fork();
-    if (pid == 0) {
-        execl("/system/bin/setprop", "setprop", "sys.linevibrator_type", value, (char *)NULL);
-        LOGE("execlp failed: %s", strerror(errno));
-        exit(EXIT_FAILURE);
-    } else if (pid < 0) {
-        LOGE("fork failed: %s", strerror(errno));
-    } else {
-        wait(NULL);
-    }
+    // if(!valid_number(value)){
+    //     LOGE("Error setting static lockscreen: Invalid Number\n");
+    //     return;
+    // }
+    // pid_t pid = fork();
+    // if (pid == 0) {
+    //     execl("/system/bin/setprop", "setprop", "sys.linevibrator_type", value, (char *)NULL);
+    //     LOGE("execlp failed: %s", strerror(errno));
+    //     exit(EXIT_FAILURE);
+    // } else if (pid < 0) {
+    //     LOGE("fork failed: %s", strerror(errno));
+    // } else {
+    //     wait(NULL);
+    // }
 }
 
 void writeMaxBrightnessProp(const char* value) {
@@ -280,20 +280,20 @@ void writeMaxBrightnessProp(const char* value) {
 }
 
 void writeWakeOnVolumeProp(const char* value) {
-    if(!valid_number(value)){
-        LOGE("Error setting static lockscreen: Invalid Number\n");
-        return;
-    }
-    pid_t pid = fork();
-    if (pid == 0) {
-        execl("/system/bin/setprop", "setprop", "sys.wakeup_on_volume", value, (char *)NULL);
-        LOGE("execlp failed: %s", strerror(errno));
-        exit(EXIT_FAILURE);
-    } else if (pid < 0) {
-        LOGE("fork failed: %s", strerror(errno));
-    } else {
-        wait(NULL);
-    }
+    // if(!valid_number(value)){
+    //     LOGE("Error setting static lockscreen: Invalid Number\n");
+    //     return;
+    // }
+    // pid_t pid = fork();
+    // if (pid == 0) {
+    //     execl("/system/bin/setprop", "setprop", "sys.wakeup_on_volume", value, (char *)NULL);
+    //     LOGE("execlp failed: %s", strerror(errno));
+    //     exit(EXIT_FAILURE);
+    // } else if (pid < 0) {
+    //     LOGE("fork failed: %s", strerror(errno));
+    // } else {
+    //     wait(NULL);
+    // }
 }
 
 void processCommand(const char* command) {
@@ -302,11 +302,11 @@ void processCommand(const char* command) {
     } else if (strcmp(command, "r") == 0) {
         epdForceClear();
     } else if (strcmp(command, "c") == 0) {
-        writeToEpdDisplayMode("180");
-    } else if (strcmp(command, "b") == 0) {
         writeToEpdDisplayMode("178");
+    } else if (strcmp(command, "b") == 0) {
+        writeToEpdDisplayMode("-2147483471");
     } else if (strcmp(command, "s") == 0) {
-        writeToEpdDisplayMode("177");
+        writeToEpdDisplayMode("180");
     } else if (strcmp(command, "p") == 0) {
         writeToEpdDisplayMode("179");
     } else if (strncmp(command, "stw", 3) == 0) {

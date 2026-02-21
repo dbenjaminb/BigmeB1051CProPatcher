@@ -1,5 +1,10 @@
-Automatically patch system.img for use with Hibreak Pro, adding eink features support
-For advanced users, check xda for pre-patched images.
+Automatically patch system.img for use with Bigme B1051C Pro, adding eink features support
+
+# I never did get this working 100%, so take these changes with a grain of salt.
+
+# NOTE: MAKE SURE YOU BACKUP YOUR SYSTEM IMAGE WITH MTK_CLIENT
+- SEE: https://vbh.ai/unlocking-the-bootloader-and-rooting-the-hibreak-pro/
+    - As steps are identical for the B1051C
 
 To run the script on linux and patch your own treble based system.img you simply have to:
 
@@ -16,14 +21,6 @@ Flashing the resulting file is done the same as any other system.img
 - run `fastboot flash system system_patched.img`
 - after that's done, run `fastboot -w`
 - run `fastboot reboot` and give it a few minutes
-
-Default E-ink features Usage:
-
-**Single Press E-Ink Button** - Refresh Screen
-
-**Double Press E-Ink Button** - Open E-Ink Menu with settings for Per-App refresh modes.
-
-These mappings can be easily changed in the E-Ink Settings app
 
 ## Licensing
 
@@ -48,3 +45,64 @@ The file `HardwareGestureDetector.kt` includes code derived from AOSP. The origi
     limitations under the License.
 
 Modifications and additions to the original code are licensed under the MIT License
+
+# Further Notes on Hardware Locations and variables for this device:
+### Modes
+
+#### Default 
+[ro.vendor.xrz.default_anti_alias]: [0]
+[ro.vendor.xrz.default_anti_flicker]: [0]
+[ro.vendor.xrz.default_auto_clean]: [1]
+[ro.vendor.xrz.default_brightness_level]: [0]
+[ro.vendor.xrz.default_color_enhance]: [80]
+[ro.vendor.xrz.default_contrast_level]: [0]
+[ro.vendor.xrz.default_refresh_frequency]: [0]
+[ro.vendor.xrz.default_refresh_mode]: [178]
+
+#### Magazine
+[sys.maga_anti_flicker]: [0]
+[sys.maga_auto_clean]: [0]
+[sys.maga_brightness]: [0]
+[sys.maga_color_enhance]: [80]
+[sys.maga_contrast]: [0]
+[sys.maga_refresh_mode]: [-2147483471]
+
+#### Comic
+[sys.comic_anti_flicker]: [0]
+[sys.comic_auto_clean]: [0]
+[sys.comic_brightness]: [0]
+[sys.comic_color_enhance]: [90]
+[sys.comic_contrast]: [90]
+[sys.comic_refresh_mode]: [180]`
+
+#### Video
+[sys.video_anti_flicker]: [1]
+[sys.video_auto_clean]: [1]
+[sys.video_brightness]: [0]
+[sys.video_color_enhance]: [80]
+[sys.video_contrast]: [0]
+[sys.video_refresh_mode]: [179]
+
+#### Force Global Refresh Mode
+[vendor.xrz.force_global_refresh_mode]: [-1]
+
+#### Refresh Frequency
+[ro.vendor.xrz.default_refresh_frequency]: [0]
+
+#### Full Refresh Fequency
+[vendor.xrz.clean_frequency]: [0 - 50]
+
+#### Lights
+/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_warm_light [0-222]
+/sys/devices/platform/11d20000.i2c1/i2c-1/1-0036/lm3630a_cold_light [0-222]
+
+Clean
+clean_a2=0
+
+Antiflicker
+anti_flicker=0 // not in eink settings
+
+no white or black threshold path
+
+no edb contrast
+
